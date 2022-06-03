@@ -5,6 +5,7 @@ from os.path import split, splitext
 from dotenv import load_dotenv
 from os import environ
 from datetime import datetime
+import telegram
 
 Path("images").mkdir(parents=True, exist_ok=True)
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -69,7 +70,11 @@ if __name__ == '__main__':
     load_dotenv()
     nasa_id = environ.get('NASA_ID')
     spacex_id = environ.get('SPACEX_ID')
+    chat_id = environ.get('CHAT_ID')
     fetch_spacex_last_launch(spacex_id)
     fetch_nasa_apod(nasa_id, 5)
     epic_dataset = fetch_epic_dataset(nasa_id)
     fetch_epic_photos(nasa_id, epic_dataset=epic_dataset, quantity=5)
+    bot = telegram.Bot(token=environ.get('BOT_TOKEN'))
+    print(bot.get_me())
+    l = bot.send_message(chat_id=chat_id, text='Hi there!?')
