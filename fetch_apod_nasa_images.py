@@ -4,7 +4,7 @@ from common import define_file_extension, USER_AGENT
 import argparse
 
 
-def fetch_nasa_apod(nasa_id, quantity):
+def fetch_nasa_apod_images(nasa_id, quantity):
     Path("images/nasa_apod").mkdir(parents=True, exist_ok=True)
     payload = {"api_key": f"{nasa_id}", "count": f"{quantity}"}
     apod_url = 'https://api.nasa.gov/planetary/apod'
@@ -24,4 +24,4 @@ if __name__ == '__main__':
     apod_parser.add_argument('quantity', help='Количиство фото')
     nasa_id = apod_parser.parse_args().nasa_id
     quantity = apod_parser.parse_args().quantity
-    fetch_nasa_apod(nasa_id, quantity)
+    fetch_nasa_apod_images(nasa_id, quantity)

@@ -8,7 +8,7 @@ import argparse
 load_dotenv()
 
 
-def fetch_epic_dataset(nasa_id) -> dict:
+def fetch_epic_dataset(nasa_id):
     payload = {"api_key": f"{nasa_id}"}
     epic_url = 'https://api.nasa.gov/EPIC/api/natural/images'
     response = requests.get(epic_url, headers=USER_AGENT, params=payload)
@@ -17,7 +17,7 @@ def fetch_epic_dataset(nasa_id) -> dict:
     return epic_dataset
 
 
-def fetch_epic_photos(nasa_id, quantity, epic_dataset):
+def fetch_epic_nasa_images(nasa_id, quantity, epic_dataset):
     Path("images/epic").mkdir(parents=True, exist_ok=True)
     epic_urls = []
     payload = {"api_key": f"{nasa_id}"}
@@ -40,4 +40,4 @@ if __name__ == '__main__':
     nasa_id = epic_parser.parse_args().nasa_id
     quantity = epic_parser.parse_args().quantity
     epic_dataset = fetch_epic_dataset(nasa_id)
-    fetch_epic_photos(nasa_id, quantity, epic_dataset)
+    fetch_epic_nasa_images(nasa_id, quantity, epic_dataset)

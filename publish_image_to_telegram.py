@@ -13,7 +13,7 @@ def get_file_path():
     return file_path_list
 
 
-def get_random_path(file_path_list):
+def get_random_image_path(file_path_list):
     random_path = random.choice(file_path_list)
     file_path_list.remove(random_path)
     return random_path
@@ -30,5 +30,5 @@ def publish_random_image(random_image, chat_id):
 if __name__ == '__main__':
     load_dotenv()
     chat_id = os.environ.get('CHAT_ID')
-    random_image = get_random_path(get_file_path())
+    random_image = get_random_image_path(get_file_path())
     publish_random_image(random_image, chat_id=chat_id)
