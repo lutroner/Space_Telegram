@@ -22,7 +22,8 @@ def get_random_image_path(file_path_list):
 def publish_random_image(random_image, chat_id):
     bot = telegram.Bot(token=environ.get('BOT_TOKEN'))
     try:
-        bot.send_photo(photo=open(random_image, 'rb'), chat_id=chat_id)
+        with open(random_image, 'rb') as file:
+            bot.send_photo(photo=file, chat_id=chat_id)
     except IndexError:
         print('Images/ directory is empty')
 
