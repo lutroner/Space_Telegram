@@ -5,7 +5,7 @@ from os import environ
 import random
 
 
-def get_file_path():
+def get_file_paths():
     file_path_list = []
     for path, dirs, files in os.walk('images/'):
         for name in files:
@@ -14,16 +14,18 @@ def get_file_path():
 
 
 def get_random_image_path(file_path_list):
-    random_path = random.choice(file_path_list)
-    file_path_list.remove(random_path)
-    return random_path
+    random_image_path = random.choice(file_path_list)
+    file_path_list.remove(random_image_path)
+    return random_image_path
 
 
-def publish_random_image(random_image, chat_id):
+def publish_random_image(random_image_path, chat_id):
     bot = telegram.Bot(token=environ.get('BOT_TOKEN'))
     try:
-        with open(random_image, 'rb') as file:
+        with open(random_image_path, 'rb') as file:
             bot.send_photo(photo=file, chat_id=chat_id)
+    #Здесь исключение именно IndexError, потому что random_image_path берется из списка всех путей.
+    #если список пуст и файлы закончились, то исключение IndexError
     except IndexError:
         print('Images/ directory is empty')
 
@@ -31,5 +33,5 @@ def publish_random_image(random_image, chat_id):
 if __name__ == '__main__':
     load_dotenv()
     chat_id = os.environ.get('CHAT_ID')
-    random_image = get_random_image_path(get_file_path())
+    random_image = get_random_image_path(get_file_paths())
     publish_random_image(random_image, chat_id=chat_id)
