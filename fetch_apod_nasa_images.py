@@ -1,6 +1,6 @@
 import requests
 from pathlib import Path
-from common import define_file_extension, USER_AGENT
+from common import define_file_extension, USER_AGENT, download_image
 import argparse
 
 
@@ -11,11 +11,9 @@ def fetch_nasa_apod_images(nasa_id, quantity):
     response = requests.get(apod_url, headers=USER_AGENT, params=payload)
     response.raise_for_status()
     for index, image_url in enumerate(response.json(), 1):
-        response = requests.get(image_url['url'], headers=USER_AGENT)
-        response.raise_for_status()
-        with open(f'images/nasa_apod/nasa_apod_{index}'
-                  f'{define_file_extension(image_url["url"])}', 'wb') as file:
-            file.write(response.content)
+        image_url = image_url['url']
+        image_path = f'images/nasa_apod/nasa_apod_{index}{define_file_extension(image_url)}'
+        download_image(image_url, image_path)
 
 
 if __name__ == '__main__':

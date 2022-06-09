@@ -1,7 +1,7 @@
 import requests
 from dotenv import load_dotenv
 from pathlib import Path
-from common import USER_AGENT
+from common import USER_AGENT, download_image
 import argparse
 
 
@@ -11,11 +11,9 @@ def fetch_spacex_last_launch_images(spacex_id):
     response = requests.get(photos_url, headers=USER_AGENT)
     response.raise_for_status()
     spacex_photos = response.json()['links']['flickr']['original']
-    for index, photo in enumerate(spacex_photos, 1):
-        response = requests.get(photo, headers=USER_AGENT)
-        response.raise_for_status()
-        with open(f'images/spacex/spacex{index}.jpg', 'wb') as file:
-            file.write(response.content)
+    for index, image_url in enumerate(spacex_photos, 1):
+        file_path = f'images/spacex/spacex{index}.jpg'
+        download_image(image_url, file_path)
 
 
 if __name__ == '__main__':

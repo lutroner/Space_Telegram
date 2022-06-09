@@ -2,7 +2,7 @@ import requests
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
-from common import USER_AGENT
+from common import USER_AGENT, download_image
 import argparse
 
 load_dotenv()
@@ -27,10 +27,8 @@ def fetch_epic_nasa_images(nasa_id, quantity, epic_dataset):
                    f'{date.day:02d}/png/{filename}.png'
         epic_urls.append(epic_url)
     for index, image_url in enumerate(epic_urls[:int(quantity)], 1):
-        response = requests.get(image_url, params=payload, headers=USER_AGENT)
-        response.raise_for_status()
-        with open(f'images/epic/epic_{index}.png', 'wb') as file:
-            file.write(response.content)
+        image_path = f'images/epic/epic_{index}.png'
+        download_image(image_url, image_path, payload)
 
 
 if __name__ == '__main__':
