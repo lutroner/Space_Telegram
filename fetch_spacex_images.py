@@ -1,5 +1,4 @@
 import requests
-from dotenv import load_dotenv
 from pathlib import Path
 from common import USER_AGENT, download_image
 import argparse
