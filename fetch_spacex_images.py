@@ -17,7 +17,6 @@ def fetch_spacex_last_launch_images(spacex_id):
 
 
 if __name__ == '__main__':
-    load_dotenv()
     spacex_parser = argparse.ArgumentParser(description='Скрипт для скачивания фото SpaceX')
     spacex_parser.add_argument('spacex_id', help='id аккаунта SpaceX')
     spacex_id = spacex_parser.parse_args().spacex_id
