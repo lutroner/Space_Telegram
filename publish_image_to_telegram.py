@@ -19,13 +19,13 @@ def get_random_image_path(file_path_list):
     return random_image_path
 
 
-def publish_random_image(random_image_path, chat_id):
-    bot = telegram.Bot(token=environ.get('BOT_TOKEN'))
+def publish_random_image(random_image_path, chat_id, bot_token):
+    bot = telegram.Bot(token=bot_token)
     try:
         with open(random_image_path, 'rb') as file:
             bot.send_photo(photo=file, chat_id=chat_id)
-    #Здесь исключение именно IndexError, потому что random_image_path берется из списка всех путей.
-    #если список пуст и файлы закончились, то исключение IndexError
+    # Здесь исключение IndexError, потому что random_image_path берется из списка всех путей.
+    # если список пуст и файлы закончились, то исключение IndexError
     except IndexError:
         print('Images/ directory is empty')
 
@@ -33,5 +33,6 @@ def publish_random_image(random_image_path, chat_id):
 if __name__ == '__main__':
     load_dotenv()
     chat_id = os.environ.get('CHAT_ID')
+    bot_token = os.environ.get('BOT_TOKEN')
     random_image = get_random_image_path(get_file_paths())
-    publish_random_image(random_image, chat_id=chat_id)
+    publish_random_image(random_image, chat_id=chat_id, bot_token=bot_token)
