@@ -1,7 +1,9 @@
+import os
 import requests
 from pathlib import Path
 from common import define_file_extension, USER_AGENT, download_image
 import argparse
+from dotenv import load_dotenv
 
 
 def fetch_nasa_apod_images(nasa_id, quantity):
@@ -17,9 +19,10 @@ def fetch_nasa_apod_images(nasa_id, quantity):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     apod_parser = argparse.ArgumentParser(description='Скачивание фото APOD(Nasa)')
-    apod_parser.add_argument('nasa_id', help='ID от APOD Api NASA')
-    apod_parser.add_argument('quantity', help='Количиство фото')
+    apod_parser.add_argument('--nasa_id', nargs='?', default=os.getenv('NASA_ID'), help='Токен API NASA')
+    apod_parser.add_argument('--quantity', nargs='?', default=5, help='Количиство фото')
     nasa_id = apod_parser.parse_args().nasa_id
     quantity = apod_parser.parse_args().quantity
     fetch_nasa_apod_images(nasa_id, quantity)

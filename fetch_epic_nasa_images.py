@@ -4,8 +4,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from common import USER_AGENT, download_image
 import argparse
-
-load_dotenv()
+import os
 
 
 def fetch_epic_dataset(nasa_id):
@@ -32,10 +31,11 @@ def fetch_epic_nasa_images(nasa_id, quantity, epic_dataset):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     epic_parser = argparse.ArgumentParser(description='Скачивание фото EPIC(Nasa)')
-    epic_parser.add_argument('nasa_id', help='ID от APOD Api NASA')
-    epic_parser.add_argument('quantity', help='Количиство фото')
+    epic_parser.add_argument('--nasa_id', nargs='?', default=os.getenv('NASA_ID'), help='Токен API NASA')
+    epic_parser.add_argument('--quantity', nargs='?', default=5, help='Количиство фото')
     nasa_id = epic_parser.parse_args().nasa_id
     quantity = epic_parser.parse_args().quantity
     epic_dataset = fetch_epic_dataset(nasa_id)
-    fetch_epic_nasa_images(nasa_id, quantity, epic_dataset)
+    fetch_epic_nasa_images(nasa_id, quantity, epic_dataset=epic_dataset)
