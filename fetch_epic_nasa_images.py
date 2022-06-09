@@ -38,4 +38,4 @@ if __name__ == '__main__':
     nasa_id = epic_parser.parse_args().nasa_id
     quantity = epic_parser.parse_args().quantity
     epic_dataset = fetch_epic_dataset(nasa_id)
-    fetch_epic_nasa_images(nasa_id, quantity, epic_dataset=epic_dataset)
+    fetch_epic_nasa_images(nasa_id, quantity, epic_dataset)
