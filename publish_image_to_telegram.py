@@ -13,20 +13,18 @@ def get_file_paths():
 
 
 def get_random_image_path(file_path_list):
-    random_image_path = random.choice(file_path_list)
-    file_path_list.remove(random_image_path)
-    return random_image_path
+    try:
+        random_image_path = random.choice(file_path_list)
+        file_path_list.remove(random_image_path)
+        return random_image_path
+    except IndexError:
+        print('Images/ directory is empty')
 
 
 def publish_random_image(random_image_path, chat_id, bot_token):
     bot = telegram.Bot(token=bot_token)
-    try:
-        with open(random_image_path, 'rb') as file:
-            bot.send_photo(photo=file, chat_id=chat_id)
-    # Здесь исключение IndexError, потому что random_image_path берется из списка всех путей.
-    # если список пуст и файлы закончились, то исключение IndexError
-    except IndexError:
-        print('Images/ directory is empty')
+    with open(random_image_path, 'rb') as file:
+        bot.send_photo(photo=file, chat_id=chat_id)
 
 
 if __name__ == '__main__':
