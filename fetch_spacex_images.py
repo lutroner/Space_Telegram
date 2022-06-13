@@ -1,7 +1,9 @@
-import requests
-from pathlib import Path
-from common import USER_AGENT, download_image
 import argparse
+from pathlib import Path
+
+import requests
+
+from common import USER_AGENT, download_image
 
 
 def fetch_spacex_last_launch_images(spacex_id):

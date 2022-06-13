@@ -1,10 +1,12 @@
-import requests
-from pathlib import Path
-from datetime import datetime
-from dotenv import load_dotenv
-from common import USER_AGENT, download_image
 import argparse
 import os
+from datetime import datetime
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
+from common import USER_AGENT, download_image
 
 
 def fetch_epic_dataset(nasa_id):

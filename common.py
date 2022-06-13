@@ -1,5 +1,6 @@
-from urllib.parse import urlsplit
 from os.path import splitext
+from urllib.parse import urlsplit
+
 import requests
 
 USER_AGENT = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "

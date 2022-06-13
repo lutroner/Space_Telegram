@@ -1,7 +1,8 @@
-import telegram
-from dotenv import load_dotenv
 import os
 import random
+
+import telegram
+from dotenv import load_dotenv
 
 
 def get_file_paths():

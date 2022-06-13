@@ -1,10 +1,13 @@
-from dotenv import load_dotenv
 from os import environ
-from fetch_spacex_images import fetch_spacex_last_launch_images
-from fetch_apod_nasa_images import fetch_nasa_apod_images
-from fetch_epic_nasa_images import fetch_epic_nasa_images, fetch_epic_dataset
-from publish_image_to_telegram import get_file_paths, get_random_image_path, publish_random_image
 from time import sleep
+
+from dotenv import load_dotenv
+
+from fetch_apod_nasa_images import fetch_nasa_apod_images
+from fetch_epic_nasa_images import fetch_epic_dataset, fetch_epic_nasa_images
+from fetch_spacex_images import fetch_spacex_last_launch_images
+from publish_image_to_telegram import (get_file_paths, get_random_image_path,
+                                       publish_random_image)
 
 if __name__ == '__main__':
     load_dotenv()

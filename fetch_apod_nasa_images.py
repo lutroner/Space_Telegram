@@ -1,9 +1,11 @@
-import os
-import requests
-from pathlib import Path
-from common import define_file_extension, USER_AGENT, download_image
 import argparse
+import os
+from pathlib import Path
+
+import requests
 from dotenv import load_dotenv
+
+from common import USER_AGENT, define_file_extension, download_image
 
 
 def fetch_nasa_apod_images(nasa_id, quantity):
