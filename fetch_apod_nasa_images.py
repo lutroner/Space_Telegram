@@ -22,7 +22,7 @@ if __name__ == '__main__':
     load_dotenv()
     apod_parser = argparse.ArgumentParser(description='Скачивание фото APOD(Nasa)')
     apod_parser.add_argument('--nasa_id', nargs='?', default=os.getenv('NASA_ID'), help='Токен API NASA')
-    apod_parser.add_argument('--quantity', nargs='?', default=5, help='Количиство фото')
+    apod_parser.add_argument('--quantity', nargs='?', default=5, help='Количество фото')
     nasa_id = apod_parser.parse_args().nasa_id
     quantity = apod_parser.parse_args().quantity
     fetch_nasa_apod_images(nasa_id, quantity)
