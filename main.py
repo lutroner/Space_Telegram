@@ -28,4 +28,3 @@ if __name__ == '__main__':
             random_image = get_random_image_path(file_path)
             publish_random_image(random_image, chat_id=chat_id, bot_token=bot_token)
         sleep(delay)
-        # print(file_path)
