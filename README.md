@@ -55,8 +55,3 @@ $ python3 fetch_spacex_images.py 5eb87d47ffd86e000604b38a
 ```console
 $ python3 apod_nasa_images.py --quantity=20
 ```
-
-### Цель проекта
-
-Код написан в образовательных целях на онлайн курсе для веб-разработчиков
-[dvmn.org](https://dvmn.org/).
